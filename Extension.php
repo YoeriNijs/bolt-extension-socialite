@@ -35,7 +35,7 @@ class Extension extends \Bolt\BaseExtension
         $this->insertSnippet(SnippetLocation::END_OF_HTML, $html);
 
         // Add ourselves to the Twig filesystem path
-        $this->app['twig.loader.filesystem']->addPath(__DIR__ . 'assets/');
+        $this->app['twig.loader.filesystem']->addPath(__DIR__ . '/assets/');
 
         // Catch the TWIG function
         $this->addTwigFunction('socialite', 'twigSocialite');
