@@ -23,7 +23,10 @@
 			"init.php"
 		],
 		"psr-4" : {
-			"Socialite\\" : [ "", "src/" ]
+			"Socialite\\" : [
+				"",
+				"src/"
+			]
 		}
 	},
 	"extra" : {
