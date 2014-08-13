@@ -46,6 +46,6 @@ class Extension extends \Bolt\BaseExtension
     {
         $this->widget = new Widget();
 
-        $this->widget->createWidget($this->app, $buttons);
+        $this->widget->createWidget($this->app, $this->config, $buttons);
     }
 }
