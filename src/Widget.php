@@ -26,7 +26,7 @@ class Widget
         // We allow either a ('string') or (['an', 'array']) of parameters, so
         // for simplicity just make everything an array
         if (!is_array($buttons)) {
-            $buttons = array($buttons);
+            $buttons = array($buttons => $buttons);
         }
 
         // Insert a <div><a> for each module called this time
