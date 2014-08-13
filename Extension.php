@@ -14,7 +14,7 @@ class Extension extends \Bolt\BaseExtension
     public function initialize() {
 
         // Define the path to us
-        $this->config['path'] = substr(__DIR__, strlen($this->app['paths']['extensionspath']));
+        $this->config['path'] = substr(__DIR__, strlen($this->app['paths']['rootpath']));
         $this->config['url'] = $this->app['paths']['canonicalurl'];
 
         // If we're set to actviate by scroll, add a class to <body> that gets
