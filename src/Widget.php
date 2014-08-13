@@ -2,8 +2,6 @@
 
 namespace Socialite;
 
-use Bolt\Extensions\Snippets\Location as SnippetLocation;
-
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 

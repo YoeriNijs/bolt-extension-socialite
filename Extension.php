@@ -2,6 +2,8 @@
 
 namespace Socialite;
 
+use Bolt\Extensions\Snippets\Location as SnippetLocation;
+
 /**
  * HTML element footprint based on file time
  *
