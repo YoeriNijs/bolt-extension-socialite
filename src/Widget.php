@@ -15,8 +15,10 @@ class Widget
 
     }
 
-    public function createWidget(Bolt\Application $app, $buttons)
+    public function createWidget(\Bolt\Application $app, $buttons)
     {
+        $this->app = $app;
+
         // Store the record in config
         $this->getRecord();
 
