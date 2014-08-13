@@ -24,7 +24,7 @@ class Extension extends \Bolt\BaseExtension
         }
 
         if (empty($this->config['template'])) {
-            $this->config['template'] = 'assets/socialite.twig';
+            $this->config['template'] = 'socialite.twig';
         }
 
         // Insert out JS late so that we are more likely to work with a late
@@ -35,7 +35,7 @@ class Extension extends \Bolt\BaseExtension
         $this->insertSnippet(SnippetLocation::END_OF_HTML, $html);
 
         // Add ourselves to the Twig filesystem path
-        $this->app['twig.loader.filesystem']->addPath(__DIR__);
+        $this->app['twig.loader.filesystem']->addPath(__DIR__ . 'assets/');
 
         // Catch the TWIG function
         $this->addTwigFunction('socialite', 'twigSocialite');
