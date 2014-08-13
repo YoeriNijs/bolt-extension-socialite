@@ -15,7 +15,7 @@ class Widget
 
     }
 
-    public function createWidget(Silex\Application $app, $buttons)
+    public function createWidget(Application $app, $buttons)
     {
         // Store the record in config
         $this->getRecord();
