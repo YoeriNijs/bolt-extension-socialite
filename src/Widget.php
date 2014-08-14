@@ -144,7 +144,7 @@ class Widget
         ));
     }
 
-    private function TwitterMention ()
+    private function TwitterMention()
     {
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'TwitterFollow',
@@ -281,8 +281,7 @@ class Widget
         }
         if (empty($this->config['pinterest_pinit_size']) || $this->config['pinterest_pinit_size'] = 'small') {
             $this->config['pinterest_pinit_size'] = "20";
-        }
-        elseif ($this->config['pinterest_pinit_size'] == 'large') {
+        } elseif ($this->config['pinterest_pinit_size'] == 'large') {
             $this->config['pinterest_pinit_size'] = "28";
         }
         if (empty($this->config['pinterest_pinit_language'])) {
