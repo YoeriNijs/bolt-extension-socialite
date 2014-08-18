@@ -11,6 +11,11 @@ use Bolt\Extensions\Snippets\Location as SnippetLocation;
  */
 class Extension extends \Bolt\BaseExtension
 {
+    public function getName()
+    {
+        return "socialite";
+    }
+
     public function initialize() {
 
         // Define the path to us
