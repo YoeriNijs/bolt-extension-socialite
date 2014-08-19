@@ -178,7 +178,7 @@ class Widget
 
     private function TwitterTimeline()
     {
-        if ( $this->config['twitter_handle'] == '' || $this->config['twitter_data_widget_id'] == '' ) {
+        if ( empty($this->config['twitter_handle']) || empty($this->config['twitter_data_widget_id']) ) {
             return;
         }
 
