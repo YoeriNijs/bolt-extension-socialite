@@ -1,6 +1,6 @@
 <?php
 
-namespace Socialite;
+namespace Bolt\Extension\Bolt\Socialite;
 
 use Bolt\Extensions\Snippets\Location as SnippetLocation;
 

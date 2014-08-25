@@ -1,6 +1,6 @@
 <?php
 
-namespace Socialite;
+namespace Bolt\Extension\Bolt\Socialite;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;

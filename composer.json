@@ -23,7 +23,7 @@
 			"init.php"
 		],
 		"psr-4" : {
-			"Socialite\\" : [
+			"Bolt\\Extension\\Bolt\\Socialite\\" : [
 				"",
 				"src/"
 			]
