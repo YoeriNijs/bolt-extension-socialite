@@ -37,7 +37,7 @@ class Extension extends \Bolt\BaseExtension
         $html .= '
             <script type="text/javascript" defer src="' . $this->config['path'] . '/js/bolt.socialite.min.js"></script>
             ';
-        $this->insertSnippet(SnippetLocation::END_OF_HTML, $html);
+        $this->addSnippet(SnippetLocation::END_OF_HTML, $html);
 
         // Add ourselves to the Twig filesystem path
         $this->app['twig.loader.filesystem']->addPath(__DIR__ . '/assets/');
@@ -52,5 +52,10 @@ class Extension extends \Bolt\BaseExtension
         $this->widget = new Widget();
 
         return $this->widget->createWidget($this->app, $this->config, $buttons);
+    }
+
+    protected function getDefaultConfig()
+    {
+        return array();
     }
 }
