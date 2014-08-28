@@ -236,7 +236,7 @@ twitter_hashtag_size: medium
 
 # Pin count: 'above', 'beside' or 'none'
 pinterest_pinit_config: above
- 
+
 # Color scheme: 'gray', 'red' or 'white'
 pinterest_pinit_color: red
 
