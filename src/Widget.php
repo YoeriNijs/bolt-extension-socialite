@@ -60,10 +60,6 @@ class Widget
 
     private function BufferAppButton($args = false)
     {
-        if (empty($this->config['bufferapp_count'])) {
-            $this->config['bufferapp_count'] = 'vertical';
-        }
-
         if (empty($this->config['bufferapp_twitter_user'])) {
             return 'Socialite setting bufferapp_twitter_user not set';
         }
@@ -86,30 +82,6 @@ class Widget
 
     private function FacebookLike()
     {
-        if (empty($this->config['facebook_like_action'])) {
-            $this->config['facebook_like_action'] = 'like';
-        }
-
-        if (empty($this->config['facebook_like_colorscheme'])) {
-            $this->config['facebook_like_colorscheme'] = 'light';
-        }
-
-        if (empty($this->config['facebook_like_kid_directed_site'])) {
-            $this->config['facebook_like_kid_directed_site'] = 'false';
-        }
-
-        if (empty($this->config['facebook_like_show_faces'])) {
-            $this->config['facebook_like_show_faces'] = 'false';
-        }
-
-        if (empty($this->config['facebook_like_layout'])) {
-            $this->config['box_count'] = '';
-        }
-
-        if (empty($this->config['facebook_like_width'])) {
-            $this->config[''] = '60';
-        }
-
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'FacebookLike',
             'url' => $this->config['url'],
@@ -125,30 +97,6 @@ class Widget
 
     private function FacebookFollow($args = false)
     {
-        if (empty($this->config['facebook_follow_action'])) {
-            $this->config['facebook_follow_action'] = 'like';
-        }
-
-        if (empty($this->config['facebook_follow_colorscheme'])) {
-            $this->config['facebook_follow_colorscheme'] = 'light';
-        }
-
-        if (empty($this->config['facebook_follow_kid_directed_site'])) {
-            $this->config['facebook_follow_kid_directed_site'] = 'false';
-        }
-
-        if (empty($this->config['facebook_follow_show_faces'])) {
-            $this->config['facebook_follow_show_faces'] = 'false';
-        }
-
-        if (empty($this->config['facebook_follow_layout'])) {
-            $this->config[''] = 'box_count';
-        }
-
-        if (empty($this->config['facebook_follow_width'])) {
-            $this->config[''] = '60';
-        }
-
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'FacebookFollow',
             'url' => $args,
@@ -163,22 +111,6 @@ class Widget
 
     private function FacebookFacepile($args = false)
     {
-        if (empty($this->config['facebook_facepile_max_rows'])) {
-            $this->config['facebook_facepile_max_rows'] = '1';
-        }
-
-        if (empty($this->config['facebook_facepile_colorscheme'])) {
-            $this->config['facebook_facepile_colorscheme'] = 'light';
-        }
-
-        if (empty($this->config['facebook_facepile_size'])) {
-            $this->config['facebook_facepile_size'] = 'medium';
-        }
-
-        if (empty($this->config['facebook_facepile_count'])) {
-            $this->config['facebook_facepile_count'] = 'true';
-        }
-
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'FacebookFacepile',
             'url' => $args,
@@ -193,18 +125,6 @@ class Widget
 
     private function TwitterShare()
     {
-        if (empty($this->config['twitter_share_align'])) {
-            $this->config['twitter_share_align'] = 'left';
-        }
-
-        if (empty($this->config['twitter_share_count'])) {
-            $this->config['twitter_share_count'] = 'vertical';
-        }
-
-        if (empty($this->config['twitter_share_size'])) {
-            $this->config['twitter_share_size'] = 'medium';
-        }
-
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'TwitterShare',
             'title' => $this->record->values['title'],
@@ -219,18 +139,6 @@ class Widget
     {
         if (empty($this->config['twitter_handle'])) {
             return 'Socilaite setting twitter_handle not set';
-        }
-
-        if (empty($this->config['twitter_follow_align'])) {
-            $this->config['twitter_follow_align'] = 'left';
-        }
-
-        if (empty($this->config['twitter_follow_count'])) {
-            $this->config['twitter_follow_count'] = 'vertical';
-        }
-
-        if (empty($this->config['twitter_follow_size'])) {
-            $this->config['twitter_follow_size'] = 'medium';
         }
 
         return $this->app['render']->render($this->config['template'], array(
@@ -250,14 +158,6 @@ class Widget
             return 'Socilaite setting twitter_handle not set';
         }
 
-        if (empty($this->config['twitter_mention_align'])) {
-            $this->config['twitter_mention_align'] = 'left';
-        }
-
-        if (empty($this->config['twitter_mention_size'])) {
-            $this->config['twitter_mention_size'] = 'medium';
-        }
-
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'TwitterFollow',
             'twitter_handle' => $this->config['twitter_handle'],
@@ -270,14 +170,6 @@ class Widget
 
     private function TwitterHashtag($args = false)
     {
-        if (empty($this->config['twitter_mention_align'])) {
-            $this->config['twitter_hashtag_align'] = 'left';
-        }
-
-        if (empty($this->config['twitter_mention_size'])) {
-            $this->config['twitter_hashtag_size'] = 'medium';
-        }
-
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'TwitterHashtag',
             'hashtag' => $args,
@@ -306,10 +198,6 @@ class Widget
             return 'Socilaite setting twitter_data_widget_id not set';
         }
 
-        if (empty($this->config['twitter_data_chrome'])) {
-            $this->config['twitter_data_chrome'] = 'noheader nofooter noborders noscrollbar transparent';
-        }
-
         $twitter_handle = str_replace( '@', '', $this->config['twitter_handle'] );
 
         return $this->app['render']->render($this->config['template'], array(
@@ -331,14 +219,6 @@ class Widget
             $this->config['google_plus_follow_size'] = 24;
         }
 
-        if (empty($this->config['google_plus_follow_annotation'])) {
-            $this->config['google_plus_follow_annotation'] = 'vertical-bubble';
-        }
-
-        if (empty($this->config['google_plus_follow_relationship'])) {
-            $this->config['google_plus_follow_relationship'] = 'publisher';
-        }
-
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'GooglePlusFollow',
             'url' => $args,
@@ -358,10 +238,6 @@ class Widget
 
     private function GooglePlusShare()
     {
-        if (empty($this->config['google_plus_share_annotation'])) {
-            $this->config['google_plus_share_annotation'] = 'vertical-bubble';
-        }
-
         if ($this->config['google_plus_share_annotation'] == 'bubble'
         || $this->config['google_plus_share_annotation'] == 'vertical-bubble') {
             $this->config['google_plus_share_size'] = '';
@@ -385,30 +261,6 @@ class Widget
 
     private function GooglePlusBadge($args)
     {
-        if (empty($this->config['google_plus_badge_layout'])) {
-            $this->config['google_plus_badge_layout'] = 'portrait';
-        }
-
-        if (empty($this->config['google_plus_badge_width'])) {
-            $this->config['google_plus_badge_width'] = '300';
-        }
-
-        if (empty($this->config['google_plus_badge_theme'])) {
-            $this->config['google_plus_badge_theme'] = 'light';
-        }
-
-        if (empty($this->config['google_plus_badge_photo'])) {
-            $this->config['google_plus_badge_photo'] = 'enabled';
-        }
-
-        if (empty($this->config['google_plus_badge_tagline'])) {
-            $this->config['google_plus_badge_tagline'] = 'enabled';
-        }
-
-        if (empty($this->config['google_plus_badge_relationship'])) {
-            $this->config['google_plus_badge_relationship'] = 'publisher';
-        }
-
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'GooglePlusBadge',
             'url' => $args,
@@ -441,19 +293,10 @@ class Widget
 
     private function PinterestPinit()
     {
-        if (empty($this->config['pinterest_pinit_color'])) {
-            $this->config['pinterest_pinit_color'] = "red";
-        }
         if (empty($this->config['pinterest_pinit_size']) || $this->config['pinterest_pinit_size'] = 'small') {
             $this->config['pinterest_pinit_size'] = "20";
         } elseif ($this->config['pinterest_pinit_size'] == 'large') {
             $this->config['pinterest_pinit_size'] = "28";
-        }
-        if (empty($this->config['pinterest_pinit_language'])) {
-            $this->config['pinterest_pinit_language'] = "en";
-        }
-        if (empty($this->config['pinterest_pinit_hover'])) {
-            $this->config['pinterest_pinit_hover'] = "on";
         }
 
         return $this->app['render']->render($this->config['template'], array(
