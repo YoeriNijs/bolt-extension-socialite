@@ -16,8 +16,8 @@ class Extension extends \Bolt\BaseExtension
         return "Socialite";
     }
 
-    public function initialize() {
-
+    public function initialize()
+    {
         // Define the path to us
         $this->config['path'] = substr(__DIR__, strlen($this->app['paths']['rootpath']));
         $this->config['url'] = $this->app['paths']['canonicalurl'];
@@ -45,7 +45,6 @@ class Extension extends \Bolt\BaseExtension
         // Catch the TWIG function
         $this->addTwigFunction('socialite', 'twigSocialite');
     }
-
 
     public function twigSocialite($buttons, $sep = '')
     {
