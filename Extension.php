@@ -57,6 +57,7 @@ class Extension extends \Bolt\BaseExtension
     protected function getDefaultConfig()
     {
         return array(
+            'template' => 'socialite.twig',
             'facebook_app_id' => '',
             'facebook_like_action' => 'like',
             'facebook_like_colorscheme' => 'light',
