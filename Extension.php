@@ -33,6 +33,12 @@ class Extension extends \Bolt\BaseExtension
         }
     }
 
+    /**
+     * Handle our Twig
+     *
+     * @param mixed  $buttons
+     * @param string $sep
+     */
     public function twigSocialite($buttons, $sep = '')
     {
         $this->widget = new Widget();
@@ -61,6 +67,11 @@ class Extension extends \Bolt\BaseExtension
         $this->addSnippet(SnippetLocation::END_OF_HTML, $html);
     }
 
+    /**
+     * Set the defaults for configuration parameters
+     *
+     * @return array
+     */
     protected function getDefaultConfig()
     {
         return array(
