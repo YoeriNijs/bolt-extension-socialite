@@ -18,14 +18,19 @@ class Extension extends \Bolt\BaseExtension
 
     public function initialize()
     {
-        // Assets
-        $this->addAssets();
+        /*
+         * Frontend
+         */
+        if ($this->app['config']->getWhichEnd() == 'frontend') {
+            // Assets
+            $this->addAssets();
 
-        // Add ourselves to the Twig filesystem path
-        $this->app['twig.loader.filesystem']->addPath(__DIR__ . '/assets/');
+            // Add ourselves to the Twig filesystem path
+            $this->app['twig.loader.filesystem']->addPath(__DIR__ . '/assets/');
 
-        // Catch the TWIG function
-        $this->addTwigFunction('socialite', 'twigSocialite');
+            // Catch the TWIG function
+            $this->addTwigFunction('socialite', 'twigSocialite');
+        }
     }
 
     public function twigSocialite($buttons, $sep = '')
