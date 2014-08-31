@@ -54,7 +54,8 @@ class Widget
         if (isset($globalTwigVars['record'])) {
             $this->record = $globalTwigVars['record'];
         } else {
-            $this->record = false;
+            $this->record->values['title'] = '';
+            $this->record->values['image'] = '';
         }
     }
 
