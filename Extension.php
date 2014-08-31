@@ -18,26 +18,8 @@ class Extension extends \Bolt\BaseExtension
 
     public function initialize()
     {
-        // Define the path to us
-        $this->config['path'] = substr(__DIR__, strlen($this->app['paths']['rootpath']));
-        $this->config['url'] = $this->app['paths']['canonicalurl'];
-
-        // If we're set to actviate by scroll, add a class to <body> that gets
-        // caught in socialite.load.js
-        if (empty($this->config['activation']) || $this->config['activation'] = 'scroll') {
-            $html = '<script>document.body.className += "socialite-scroll";</script>';
-        }
-
-        if (empty($this->config['template'])) {
-            $this->config['template'] = 'socialite.twig';
-        }
-
-        // Insert out JS late so that we are more likely to work with a late
-        // jQuery insertion
-        $html .= '
-            <script defer src="' . $this->config['path'] . '/js/bolt.socialite.min.js"></script>
-            ';
-        $this->addSnippet(SnippetLocation::END_OF_HTML, $html);
+        // Assets
+        $this->addAssets();
 
         // Add ourselves to the Twig filesystem path
         $this->app['twig.loader.filesystem']->addPath(__DIR__ . '/assets/');
@@ -51,6 +33,27 @@ class Extension extends \Bolt\BaseExtension
         $this->widget = new Widget();
 
         return $this->widget->createWidget($this->app, $this->config, $buttons);
+    }
+
+    private function addAssets()
+    {
+        // Define the path to us
+        $this->config['path'] = substr(__DIR__, strlen($this->app['paths']['rootpath']));
+        $this->config['url'] = $this->app['paths']['canonicalurl'];
+
+        // If we're set to actviate by scroll, add a class to <body> that gets
+        // caught in socialite.load.js
+        if (empty($this->config['activation']) || $this->config['activation'] = 'scroll') {
+            $html = '<script>document.body.className += "socialite-scroll";</script>';
+        }
+
+        // Insert out JS late so that we are more likely to work with a late
+        // jQuery insertion
+        $html .= '
+            <script defer src="' . $this->config['path'] . '/js/bolt.socialite.min.js"></script>
+            ';
+
+        $this->addSnippet(SnippetLocation::END_OF_HTML, $html);
     }
 
     protected function getDefaultConfig()
