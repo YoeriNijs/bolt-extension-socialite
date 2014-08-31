@@ -25,7 +25,7 @@ class Extension extends \Bolt\BaseExtension
         // If we're set to actviate by scroll, add a class to <body> that gets
         // caught in socialite.load.js
         if (empty($this->config['activation']) || $this->config['activation'] = 'scroll') {
-            $html = '<script type="text/javascript">document.body.className += "socialite-scroll";</script>';
+            $html = '<script>document.body.className += "socialite-scroll";</script>';
         }
 
         if (empty($this->config['template'])) {
@@ -35,7 +35,7 @@ class Extension extends \Bolt\BaseExtension
         // Insert out JS late so that we are more likely to work with a late
         // jQuery insertion
         $html .= '
-            <script type="text/javascript" defer src="' . $this->config['path'] . '/js/bolt.socialite.min.js"></script>
+            <script defer src="' . $this->config['path'] . '/js/bolt.socialite.min.js"></script>
             ';
         $this->addSnippet(SnippetLocation::END_OF_HTML, $html);
 
