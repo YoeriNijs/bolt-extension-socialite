@@ -18,7 +18,7 @@
 
     Socialite.network('facebook', {
         script: {
-            src : '//connect.facebook.net/{{language}}/all.js',
+            src : '//connect.facebook.net/{{language}}/sdk.js',
             id  : 'facebook-jssdk'
         },
         append: function(network)
@@ -38,7 +38,8 @@
             window.fbAsyncInit = function() {
                 window.FB.init({
                       appId: settings.appId,
-                      xfbml: true
+                      xfbml: true,
+                      version: 'v2.2'
                 });
                 for (var e in events) {
                     if (typeof settings[e] === 'function') {
