@@ -1,5 +1,9 @@
 # Changelog for Socialite
 
+* 2.1.1 (2015-02-02)
+
+ * Added patch to use latest Facebook Javascript SDK
+
 * 2.1.0 (2014-12-30)
 
  * Updated to Socialite 2.1
