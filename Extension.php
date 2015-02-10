@@ -61,7 +61,7 @@ class Extension extends \Bolt\BaseExtension
         // Insert out JS late so that we are more likely to work with a late
         // jQuery insertion
         $html .= '
-            <script defer src="/' . $this->config['path'] . '/js/bolt.socialite.min.js"></script>
+            <script defer src="' . $this->app['paths']['root'] . $this->config['path'] . '/js/bolt.socialite.min.js"></script>
             ';
 
         $this->addSnippet(SnippetLocation::END_OF_HTML, $html);
