@@ -1,5 +1,9 @@
 # Changelog for Socialite
 
+* 2.1.2 (2015-02-10)
+
+ * Better root path handling for Socialite JS (credit: @alexkb0009)
+
 * 2.1.1 (2015-02-02)
 
  * Added patch to use latest Facebook Javascript SDK
