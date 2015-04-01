@@ -2,8 +2,6 @@
 
 namespace Bolt\Extension\Bolt\Socialite;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Socialite widget functions
@@ -12,7 +10,6 @@ class Widget
 {
     public function __construct()
     {
-
     }
 
     public function createWidget(\Bolt\Application $app, $config, $buttons)
@@ -31,7 +28,6 @@ class Widget
 
         // Insert a <div><a> for each module called this time
         foreach ($buttons as $key => $value) {
-
             if (is_numeric($key) && method_exists($this, $value)) {
                 $html = call_user_func(array($this, $value), false);
                 return new \Twig_Markup($html, 'UTF-8');
@@ -39,7 +35,6 @@ class Widget
                 $html = call_user_func(array($this, $key), $value);
                 return new \Twig_Markup($html, 'UTF-8');
             }
-
         }
     }
 
@@ -73,52 +68,52 @@ class Widget
 
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'BufferAppButton',
-            'text' => $this->record->values['title'],
-            'url' => $this->config['url'],
-            'count' => $this->config['bufferapp_count'],
-            'via' => $this->config['bufferapp_twitter_user'],
-            'picture' => $image
+            'text'      => $this->record->values['title'],
+            'url'       => $this->config['url'],
+            'count'     => $this->config['bufferapp_count'],
+            'via'       => $this->config['bufferapp_twitter_user'],
+            'picture'   => $image
         ));
     }
 
     private function FacebookLike()
     {
         return $this->app['render']->render($this->config['template'], array(
-            'socialite' => 'FacebookLike',
-            'url' => $this->config['url'],
-            'title' => $this->record->values['title'],
-            'action' => $this->config['facebook_like_action'],
-            'colorscheme' => $this->config['facebook_like_colorscheme'],
+            'socialite'         => 'FacebookLike',
+            'url'               => $this->config['url'],
+            'title'             => $this->record->values['title'],
+            'action'            => $this->config['facebook_like_action'],
+            'colorscheme'       => $this->config['facebook_like_colorscheme'],
             'kid_directed_site' => $this->config['facebook_like_kid_directed_site'],
-            'showfaces' => $this->config['facebook_like_show_faces'],
-            'layout' => $this->config['facebook_like_layout'],
-            'width' => $this->config['facebook_like_width']
+            'showfaces'         => $this->config['facebook_like_show_faces'],
+            'layout'            => $this->config['facebook_like_layout'],
+            'width'             => $this->config['facebook_like_width']
         ));
     }
 
     private function FacebookFollow($args = false)
     {
         return $this->app['render']->render($this->config['template'], array(
-            'socialite' => 'FacebookFollow',
-            'url' => $args,
-            'action' => $this->config['facebook_follow_action'],
-            'colorscheme' => $this->config['facebook_follow_colorscheme'],
+            'socialite'         => 'FacebookFollow',
+            'url'               => $args,
+            'action'            => $this->config['facebook_follow_action'],
+            'colorscheme'       => $this->config['facebook_follow_colorscheme'],
             'kid_directed_site' => $this->config['facebook_follow_kid_directed_site'],
-            'showfaces' => $this->config['facebook_follow_show_faces'],
-            'layout' => $this->config['facebook_follow_layout'],
-            'width' => $this->config['facebook_follow_width']
+            'showfaces'         => $this->config['facebook_follow_show_faces'],
+            'layout'            => $this->config['facebook_follow_layout'],
+            'width'             => $this->config['facebook_follow_width']
         ));
     }
 
     private function FacebookFacepile($args = false)
     {
         return $this->app['render']->render($this->config['template'], array(
-            'socialite' => 'FacebookFacepile',
-            'url' => $args,
-            'maxrows' => $this->config['facebook_facepile_max_rows'],
+            'socialite'   => 'FacebookFacepile',
+            'url'         => $args,
+            'maxrows'     => $this->config['facebook_facepile_max_rows'],
             'colorscheme' => $this->config['facebook_facepile_colorscheme'],
-            'size' => $this->config['facebook_facepile_size'],
-            'count' => $this->config['facebook_facepile_count']
+            'size'        => $this->config['facebook_facepile_size'],
+            'count'       => $this->config['facebook_facepile_count']
         ));
 
         //data-max-rows="2" data-colorscheme="light" data-size="small" data-show-count="true"
@@ -128,11 +123,11 @@ class Widget
     {
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'TwitterShare',
-            'title' => $this->record->values['title'],
-            'url' => $this->config['url'],
-            'align' => $this->config['twitter_share_align'],
-            'count' => $this->config['twitter_share_count'],
-            'size' => $this->config['twitter_share_size']
+            'title'     => $this->record->values['title'],
+            'url'       => $this->config['url'],
+            'align'     => $this->config['twitter_share_align'],
+            'count'     => $this->config['twitter_share_count'],
+            'size'      => $this->config['twitter_share_size']
         ));
     }
 
@@ -143,13 +138,13 @@ class Widget
         }
 
         return $this->app['render']->render($this->config['template'], array(
-            'socialite' => 'TwitterFollow',
+            'socialite'      => 'TwitterFollow',
             'twitter_handle' => $this->config['twitter_handle'],
-            'title' => $this->record->values['title'],
-            'url' => $this->config['url'],
-            'align' => $this->config['twitter_follow_align'],
-            'count' => $this->config['twitter_follow_count'],
-            'size' => $this->config['twitter_follow_size']
+            'title'          => $this->record->values['title'],
+            'url'            => $this->config['url'],
+            'align'          => $this->config['twitter_follow_align'],
+            'count'          => $this->config['twitter_follow_count'],
+            'size'           => $this->config['twitter_follow_size']
         ));
     }
 
@@ -160,12 +155,12 @@ class Widget
         }
 
         return $this->app['render']->render($this->config['template'], array(
-            'socialite' => 'TwitterFollow',
+            'socialite'      => 'TwitterFollow',
             'twitter_handle' => $this->config['twitter_handle'],
-            'title' => $this->record->values['title'],
-            'url' => $this->config['url'],
-            'align' => $this->config['twitter_mention_align'],
-            'size' => $this->config['twitter_mention_size']
+            'title'          => $this->record->values['title'],
+            'url'            => $this->config['url'],
+            'align'          => $this->config['twitter_mention_align'],
+            'size'           => $this->config['twitter_mention_size']
         ));
     }
 
@@ -173,11 +168,11 @@ class Widget
     {
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'TwitterHashtag',
-            'hashtag' => $args,
-            'title' => $this->record->values['title'],
-            'url' => $this->config['url'],
-            'align' => $this->config['twitter_hashtag_align'],
-            'size' => $this->config['twitter_hashtag_size']
+            'hashtag'   => $args,
+            'title'     => $this->record->values['title'],
+            'url'       => $this->config['url'],
+            'align'     => $this->config['twitter_hashtag_align'],
+            'size'      => $this->config['twitter_hashtag_size']
         ));
     }
 
@@ -185,7 +180,7 @@ class Widget
     {
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'TwitterEmbed',
-            'url' => $args
+            'url'       => $args
         ));
     }
 
@@ -199,13 +194,13 @@ class Widget
             return 'Socilaite setting twitter_data_widget_id not set';
         }
 
-        $twitter_handle = str_replace( '@', '', $this->config['twitter_handle'] );
+        $twitter_handle = str_replace('@', '', $this->config['twitter_handle']);
 
         return $this->app['render']->render($this->config['template'], array(
-            'socialite' => 'TwitterTimeline',
+            'socialite'      => 'TwitterTimeline',
             'twitter_handle' => $twitter_handle,
-            'widget_id' => $this->config['twitter_data_widget_id'],
-            'chrome' => $this->config['twitter_data_chrome']
+            'widget_id'      => $this->config['twitter_data_widget_id'],
+            'chrome'         => $this->config['twitter_data_chrome']
         ));
     }
 
@@ -221,11 +216,11 @@ class Widget
         }
 
         return $this->app['render']->render($this->config['template'], array(
-            'socialite' => 'GooglePlusFollow',
-            'url' => $args,
+            'socialite'  => 'GooglePlusFollow',
+            'url'        => $args,
             'annotation' => $this->config['google_plus_follow_annotation'],
-            'height' => $this->config['google_plus_follow_size'],
-            'rel' => $this->config['google_plus_follow_relationship']
+            'height'     => $this->config['google_plus_follow_size'],
+            'rel'        => $this->config['google_plus_follow_relationship']
         ));
     }
 
@@ -233,7 +228,7 @@ class Widget
     {
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'GooglePlusOne',
-            'url' => $this->config['url']
+            'url'       => $this->config['url']
         ));
     }
 
@@ -253,24 +248,24 @@ class Widget
         }
 
         return $this->app['render']->render($this->config['template'], array(
-            'socialite' => 'GooglePlusShare',
-            'url' => $this->config['url'],
+            'socialite'  => 'GooglePlusShare',
+            'url'        => $this->config['url'],
             'annotation' => $this->config['google_plus_share_annotation'],
-            'height' => $this->config['google_plus_share_size']
+            'height'     => $this->config['google_plus_share_size']
         ));
     }
 
     private function GooglePlusBadge($args)
     {
         return $this->app['render']->render($this->config['template'], array(
-            'socialite' => 'GooglePlusBadge',
-            'url' => $args,
-            'layout' => $this->config['google_plus_badge_layout'],
-            'width' => $this->config['google_plus_badge_width'],
-            'theme' => $this->config['google_plus_badge_theme'],
+            'socialite'      => 'GooglePlusBadge',
+            'url'            => $args,
+            'layout'         => $this->config['google_plus_badge_layout'],
+            'width'          => $this->config['google_plus_badge_width'],
+            'theme'          => $this->config['google_plus_badge_theme'],
             'showcoverphoto' => $this->config['google_plus_badge_photo'],
-            'showtagline' => $this->config['google_plus_badge_tagline'],
-            'rel' => $this->config['google_plus_badge_relationship'],
+            'showtagline'    => $this->config['google_plus_badge_tagline'],
+            'rel'            => $this->config['google_plus_badge_relationship'],
         ));
     }
 
@@ -278,8 +273,8 @@ class Widget
     {
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'LinkedinShare',
-            'url' => $this->config['url'],
-            'title' => $this->record->values['title']
+            'url'       => $this->config['url'],
+            'title'     => $this->record->values['title']
         ));
     }
 
@@ -287,8 +282,8 @@ class Widget
     {
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'LinkedinRecommend',
-            'url' => $this->config['url'],
-            'title' => $this->record->values['title']
+            'url'       => $this->config['url'],
+            'title'     => $this->record->values['title']
         ));
     }
 
@@ -302,10 +297,10 @@ class Widget
 
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'PinterestPinit',
-            'lang' => $this->config['pinterest_pinit_language'],
-            'color' => $this->config['pinterest_pinit_color'],
-            'height' => $this->config['pinterest_pinit_size'],
-            'config' => $this->config['pinterest_pinit_config']
+            'lang'      => $this->config['pinterest_pinit_language'],
+            'color'     => $this->config['pinterest_pinit_color'],
+            'height'    => $this->config['pinterest_pinit_size'],
+            'config'    => $this->config['pinterest_pinit_config']
         ));
     }
     /*
@@ -344,10 +339,10 @@ class Widget
 
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'GitHubStar',
-            'user' => $user,
-            'repo' => $repo,
-            'count' => $this->config['github_count'],
-            'size' => $this->config['github_size']
+            'user'      => $user,
+            'repo'      => $repo,
+            'count'     => $this->config['github_count'],
+            'size'      => $this->config['github_size']
         ));
     }
 
@@ -366,10 +361,10 @@ class Widget
 
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'GitHubFork',
-            'user' => $user,
-            'repo' => $repo,
-            'count' => $this->config['github_count'],
-            'size' => $this->config['github_size']
+            'user'      => $user,
+            'repo'      => $repo,
+            'count'     => $this->config['github_count'],
+            'size'      => $this->config['github_size']
         ));
     }
 
@@ -383,9 +378,9 @@ class Widget
 
         return $this->app['render']->render($this->config['template'], array(
             'socialite' => 'GitHubFollow',
-            'user' => $user,
-            'count' => $this->config['github_count'],
-            'size' => $this->config['github_size']
+            'user'      => $user,
+            'count'     => $this->config['github_count'],
+            'size'      => $this->config['github_size']
         ));
     }
 
