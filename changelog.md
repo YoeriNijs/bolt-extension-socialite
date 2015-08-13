@@ -1,5 +1,9 @@
 # Changelog for Socialite
 
+* 2.1.3 (2015-08-13)
+
+ * Update Socialite for changes in the Twitter API
+
 * 2.1.2 (2015-02-10)
 
  * Better root path handling for Socialite JS (credit: @alexkb0009)

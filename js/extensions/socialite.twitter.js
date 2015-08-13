@@ -54,18 +54,11 @@
         instance.el.appendChild(el);
     };
 
-    var twitterActivate = function(instance)
-    {
-        if (window.twttr && typeof window.twttr.widgets === 'object' && typeof window.twttr.widgets.load === 'function') {
-            window.twttr.widgets.load();
-        }
-    };
-
-    Socialite.widget('twitter', 'share',    { init: twitterInit, activate: twitterActivate });
-    Socialite.widget('twitter', 'follow',   { init: twitterInit, activate: twitterActivate });
-    Socialite.widget('twitter', 'hashtag',  { init: twitterInit, activate: twitterActivate });
-    Socialite.widget('twitter', 'mention',  { init: twitterInit, activate: twitterActivate });
-    Socialite.widget('twitter', 'timeline', { init: twitterInit, activate: twitterActivate });
+    Socialite.widget('twitter', 'share',    { init: twitterInit });
+    Socialite.widget('twitter', 'follow',   { init: twitterInit });
+    Socialite.widget('twitter', 'hashtag',  { init: twitterInit });
+    Socialite.widget('twitter', 'mention',  { init: twitterInit });
+    Socialite.widget('twitter', 'timeline', { init: twitterInit });
 
     Socialite.widget('twitter', 'embed',   {
         process: function(instance)
@@ -83,8 +76,7 @@
         init: function(instance)
         {
             instance.innerEl.className = 'twitter-tweet';
-        },
-        activate: twitterActivate
+        }
     });
 
 })(window, window.document, window.Socialite);
