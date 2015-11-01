@@ -54,14 +54,14 @@ class Extension extends \Bolt\BaseExtension
 
         // If we're set to actviate by scroll, add a class to <body> that gets
         // caught in socialite.load.js
-        if (empty($this->config['activation']) || $this->config['activation'] = 'scroll') {
+        if (empty($this->config['activation']) || $this->config['activation'] == 'scroll') {
             $html = '<script>document.body.className += "socialite-scroll";</script>';
         }
 
         // Insert out JS late so that we are more likely to work with a late
         // jQuery insertion
         $html .= '
-            <script defer src="' . $this->app['resources']->getUrl('root') . $this->config['path'] . '/js/bolt.socialite.min.js"></script>
+            <script defer src="' . str_replace("//","/",$this->app['resources']->getUrl('root') . $this->config['path']) . '/js/bolt.socialite.min.js"></script>
             ';
 
         $this->addSnippet(SnippetLocation::END_OF_HTML, $html);
