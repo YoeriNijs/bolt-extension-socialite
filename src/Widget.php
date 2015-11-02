@@ -26,16 +26,20 @@ class Widget
             $buttons = array($buttons => $buttons);
         }
 
+$html="";
+
         // Insert a <div><a> for each module called this time
         foreach ($buttons as $key => $value) {
-            if (is_numeric($key) && method_exists($this, $value)) {
-                $html = call_user_func(array($this, $value), false);
-                return new \Twig_Markup($html, 'UTF-8');
+
+                if (is_numeric($key) && method_exists($this, $value)) {
+                $html.= call_user_func(array($this, $value), false);
+
             } elseif (method_exists($this, $key)) {
-                $html = call_user_func(array($this, $key), $value);
-                return new \Twig_Markup($html, 'UTF-8');
+                $html.= call_user_func(array($this, $key), $value);
+
             }
         }
+        return new \Twig_Markup($html, 'UTF-8');
     }
 
     private function getRecord()
@@ -289,7 +293,7 @@ class Widget
 
     private function PinterestPinit()
     {
-        if (empty($this->config['pinterest_pinit_size']) || $this->config['pinterest_pinit_size'] = 'small') {
+        if (empty($this->config['pinterest_pinit_size']) || $this->config['pinterest_pinit_size'] == 'small') {
             $this->config['pinterest_pinit_size'] = "20";
         } elseif ($this->config['pinterest_pinit_size'] == 'large') {
             $this->config['pinterest_pinit_size'] = "28";
