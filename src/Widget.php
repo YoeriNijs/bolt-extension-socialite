@@ -2,20 +2,18 @@
 
 namespace Bolt\Extension\Bolt\Socialite;
 
+use Silex\Application;
 
 /**
  * Socialite widget functions
  */
 class Widget
 {
-    public function __construct()
-    {
-    }
-
-    public function createWidget(\Bolt\Application $app, $config, $buttons)
+    public function createWidget(Application $app, $config, $buttons)
     {
         $this->app = $app;
         $this->config = $config;
+        $html = '';
 
         // Store the record in config
         $this->getRecord();
@@ -26,17 +24,12 @@ class Widget
             $buttons = array($buttons => $buttons);
         }
 
-$html="";
-
         // Insert a <div><a> for each module called this time
         foreach ($buttons as $key => $value) {
-
-                if (is_numeric($key) && method_exists($this, $value)) {
-                $html.= call_user_func(array($this, $value), false);
-
+            if (is_numeric($key) && method_exists($this, $value)) {
+                $html .= call_user_func(array($this, $value), false);
             } elseif (method_exists($this, $key)) {
-                $html.= call_user_func(array($this, $key), $value);
-
+                $html .= call_user_func(array($this, $key), $value);
             }
         }
         return new \Twig_Markup($html, 'UTF-8');
@@ -65,9 +58,9 @@ $html="";
         }
 
         if (is_array($this->record->values['image'])) {
-            $image = $this->app['paths']['rooturl'] . $this->app['paths']['files'] . $this->record->values['image']['file'];
+            $image = $this->app['resources']->getPath('files') . $this->record->values['image']['file'];
         } else {
-            $image = $this->app['paths']['rooturl'] . $this->app['paths']['files'] . $this->record->values['image'];
+            $image = $this->app['resources']->getPath('files') . $this->record->values['image'];
         }
 
         return $this->app['render']->render($this->config['template'], array(
@@ -211,11 +204,11 @@ $html="";
     private function GooglePlusFollow($args = false)
     {
         if (empty($this->config['google_plus_follow_size'])
-            || $this->config['google_plus_follow_size'] == 'small') {
+            || $this->config['google_plus_follow_size'] === 'small') {
             $this->config['google_plus_follow_size'] = 15;
-        } elseif ($this->config['google_plus_follow_size'] == 'medium') {
+        } elseif ($this->config['google_plus_follow_size'] === 'medium') {
             $this->config['google_plus_follow_size'] = 20;
-        } elseif ($this->config['google_plus_follow_size'] == 'large') {
+        } elseif ($this->config['google_plus_follow_size'] === 'large') {
             $this->config['google_plus_follow_size'] = 24;
         }
 
@@ -238,15 +231,15 @@ $html="";
 
     private function GooglePlusShare()
     {
-        if ($this->config['google_plus_share_annotation'] == 'bubble'
-        || $this->config['google_plus_share_annotation'] == 'vertical-bubble') {
+        if ($this->config['google_plus_share_annotation'] === 'bubble'
+        || $this->config['google_plus_share_annotation'] === 'vertical-bubble') {
             $this->config['google_plus_share_size'] = '';
         } else {
-            if ($this->config['google_plus_share_size'] == 'small') {
+            if ($this->config['google_plus_share_size'] === 'small') {
                 $this->config['google_plus_share_size'] = 15;
-            } elseif ($this->config['google_plus_share_size'] == 'medium') {
+            } elseif ($this->config['google_plus_share_size'] === 'medium') {
                 $this->config['google_plus_share_size'] = 20;
-            } elseif ($this->config['google_plus_share_size'] == 'large') {
+            } elseif ($this->config['google_plus_share_size'] === 'large') {
                 $this->config['google_plus_share_size'] = 24;
             }
         }
@@ -293,9 +286,9 @@ $html="";
 
     private function PinterestPinit()
     {
-        if (empty($this->config['pinterest_pinit_size']) || $this->config['pinterest_pinit_size'] == 'small') {
+        if (empty($this->config['pinterest_pinit_size']) || $this->config['pinterest_pinit_size'] === 'small') {
             $this->config['pinterest_pinit_size'] = "20";
-        } elseif ($this->config['pinterest_pinit_size'] == 'large') {
+        } elseif ($this->config['pinterest_pinit_size'] === 'large') {
             $this->config['pinterest_pinit_size'] = "28";
         }
 
