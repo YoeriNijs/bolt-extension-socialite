@@ -1,5 +1,9 @@
 # Changelog for Socialite
 
+* 2.1.4 (2015-11-02)
+
+ * Properly handle multiple social networks in one Twig call (credit: @dactivo)
+ 
 * 2.1.3 (2015-08-13)
 
  * Update Socialite for changes in the Twitter API
