@@ -10,7 +10,7 @@ use Bolt\Extensions\Snippets\Location as SnippetLocation;
  *
  * @author Gawain Lynch <gawain.lynch@gmail.com>
  */
-class Extension extends BaseExtension
+class SocialiteExtension extends BaseExtension
 {
     public function getName()
     {
