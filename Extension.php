@@ -23,7 +23,7 @@ class Extension extends BaseExtension
         $this->app->before(array($this, 'before'));
 
         // Add ourselves to the Twig filesystem path
-        $this->app['twig.loader.filesystem']->addPath(__DIR__ . '/assets/');
+        $this->app['twig.loader.filesystem']->addPath(__DIR__ . '/templates/');
 
         // Catch the TWIG function
         $this->addTwigFunction('socialite', 'twigSocialite');
