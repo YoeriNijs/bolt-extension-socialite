@@ -2,70 +2,87 @@
 
 namespace Bolt\Extension\Bolt\Socialite;
 
-use Bolt\BaseExtension;
-use Bolt\Extensions\Snippets\Location as SnippetLocation;
+use Bolt\Asset\File\JavaScript;
+use Bolt\Asset\Snippet\Snippet;
+use Bolt\Asset\Target;
+use Bolt\Extension\SimpleExtension;
+use Silex\Application;
 
 /**
  * Socialite extension for Bolt.
  *
  * @author Gawain Lynch <gawain.lynch@gmail.com>
  */
-class SocialiteExtension extends BaseExtension
+class SocialiteExtension extends SimpleExtension
 {
-    public function getName()
-    {
-        return 'Socialite';
-    }
-
-    public function initialize()
-    {
-        // Front-end assets
-        $this->app->before(array($this, 'before'));
-
-        // Add ourselves to the Twig filesystem path
-        $this->app['twig.loader.filesystem']->addPath(__DIR__ . '/templates/');
-
-        // Catch the TWIG function
-        $this->addTwigFunction('socialite', 'twigSocialite');
-    }
+    /** @var bool */
+    private $injected;
 
     /**
      * Handle our Twig
      *
-     * @param mixed  $buttons
-     * @param string $sep
+     * @param string|array $buttons
+     *
+     * @return \Twig_Markup
      */
-    public function twigSocialite($buttons, $sep = '')
+    public function twigSocialite($buttons)
     {
-        $this->widget = new Widget();
+        $this->queueAssets();
+        $app = $this->getContainer();
 
-        return $this->widget->createWidget($this->app, $this->config, $buttons);
+        return (new Widget())->createWidget($this->getConfig(), $app['twig'], $buttons, $app['resources']->getPath('files'));
     }
 
-    public function before()
+    protected function queueAssets()
     {
-        if ($this->app['config']->getWhichEnd() !== 'frontend') {
+        if ($this->injected) {
             return;
         }
+        $this->injected = true;
+
+        $app = $this->getContainer();
+        $webPath = sprintf('/extensions/%s/web/bolt.socialite.min.js', $this->getBaseDirectory()->getPath());
+        $config = $this->getConfig();
 
         // If we're set to actviate by scroll, add a class to <body> that gets
         // caught in socialite.load.js
-        if (empty($this->config['activation']) || $this->config['activation'] === 'scroll') {
+        if ($config['activation'] === 'scroll') {
             $html = '<script>document.body.className += "socialite-scroll";</script>';
-            $this->addSnippet(SnippetLocation::END_OF_BODY, $html);
+            $snippet = (new Snippet())->setCallback($html)->setLocation(Target::END_OF_BODY);
+            $app['asset.queue.snippet']->add($snippet);
         }
 
-        $this->addJavascript('js/bolt.socialite.min.js', array('late' => true));
+        $js = (new JavaScript($webPath))->setLate(true)->setLocation(Target::END_OF_BODY);
+
+        $app['asset.queue.file']->add($js);
+
     }
 
     /**
-     * Set the defaults for configuration parameters
-     *
-     * @return array
+     * {@inheritdoc}
+     */
+    protected function registerTwigFunctions()
+    {
+        return [
+            'socialite' => ['twigSocialite', ['is_safe' => ['html']]]
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function registerTwigPaths()
+    {
+        return ['templates'];
+    }
+
+    /**
+     * {@inheritdoc}
      */
     protected function getDefaultConfig()
     {
-        return array(
+        return [
+            'activation'                        => 'scroll',
             'template'                          => 'socialite.twig',
             'facebook_app_id'                   => '',
             'facebook_like_action'              => 'like',
@@ -120,7 +137,7 @@ class SocialiteExtension extends BaseExtension
             'github_user'                       => 'bolt',
             'github_repo'                       => 'bolt',
             'github_count'                      => 'true',
-            'github_size'                       => 'large'
-        );
+            'github_size'                       => 'large',
+        ];
     }
 }
