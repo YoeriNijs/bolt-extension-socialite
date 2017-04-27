@@ -30,7 +30,7 @@ class SocialiteExtension extends SimpleExtension
         $this->queueAssets();
         $app = $this->getContainer();
 
-        return (new Widget())->createWidget($this->getConfig(), $app['twig'], $buttons, $app['resources']->getPath('files'));
+        return (new Widget())->createWidget($this->getConfig(), $app['twig'], $buttons, $app['path_resolver']->resolve('%files%'));
     }
 
     protected function queueAssets()
@@ -41,10 +41,9 @@ class SocialiteExtension extends SimpleExtension
         $this->injected = true;
 
         $app = $this->getContainer();
-        $webPath = sprintf('/extensions/%s/web/bolt.socialite.min.js', $this->getBaseDirectory()->getPath());
         $config = $this->getConfig();
 
-        // If we're set to actviate by scroll, add a class to <body> that gets
+        // If we're set to activate by scroll, add a class to <body> that gets
         // caught in socialite.load.js
         if ($config['activation'] === 'scroll') {
             $html = '<script>document.body.className += "socialite-scroll";</script>';
@@ -52,7 +51,12 @@ class SocialiteExtension extends SimpleExtension
             $app['asset.queue.snippet']->add($snippet);
         }
 
-        $js = (new JavaScript($webPath))->setLate(true)->setLocation(Target::END_OF_BODY);
+        $webPath = $this->getWebDirectory()->getPath() .'/bolt.socialite.min.js';
+        $js = (new JavaScript($webPath))
+            ->setLate(true)
+            ->setAttributes(['defer', 'async'])
+            ->setLocation(Target::END_OF_BODY)
+        ;
 
         $app['asset.queue.file']->add($js);
 
@@ -138,6 +142,7 @@ class SocialiteExtension extends SimpleExtension
             'github_repo'                       => 'bolt',
             'github_count'                      => 'true',
             'github_size'                       => 'large',
+            'url'                               => null,
         ];
     }
 }
