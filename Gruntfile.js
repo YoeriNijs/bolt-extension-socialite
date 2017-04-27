@@ -1,27 +1,28 @@
 module.exports = function(grunt) {
 
-	grunt.initConfig({
-		uglify : {
-			my_target : {
-				options : {
-					sourceMap : true,
-					sourceMapName : 'js/bolt.socialite.min.map',
-					preserveComments : 'some'
-				},
-				files : {
-					'js/bolt.socialite.min.js' : [
-							'js/socialite.js',
-							'js/extensions/socialite.bufferapp.js',
-							'js/extensions/socialite.github.js',
-							'js/extensions/socialite.pinterest.js',
-							'js/bolt.socialite.load.js' ]
-				}
-			}
-		}
-	});
+    grunt.initConfig({
+        uglify: {
+            base: {
+                options: {
+                    sourceMap: true,
+                    sourceMapName: 'web/bolt.socialite.min.map',
+                    preserveComments: 'some'
+                },
+                files: {
+                    'bolt.socialite.min.js': [
+                        'web/socialite.js',
+                        'web/extensions/socialite.bufferapp.js',
+                        'web/extensions/socialite.github.js',
+                        'web/extensions/socialite.pinterest.js',
+                        'web/bolt.socialite.load.js'
+                    ]
+                }
+            }
+        }
+    });
 
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('default', [ 'uglify' ]);
+    grunt.registerTask('default', ['uglify']);
 
 };
